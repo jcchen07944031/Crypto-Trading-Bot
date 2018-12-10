@@ -54,8 +54,9 @@ class Trader(object):
         Analyse all the un-paused coin pairs for buy signals and apply buys
         """
         trade_len = len(self.Database.trades["trackedCoinPairs"])
-        pause_trade_len = len(self.Database.app_data["pausedTrackedCoinPairs"])
-        if (trade_len < 1 or pause_trade_len == trade_len) and trade_len < self.trade_params["buy"]["maxOpenTrades"]:
+        # pause_trade_len = len(self.Database.app_data["pausedTrackedCoinPairs"])
+        #if (trade_len < 1 or pause_trade_len == trade_len) and trade_len < self.trade_params["buy"]["maxOpenTrades"]:
+        if trade_len < self.trade_params["buy"]["maxOpenTrades"]:
             for coin_pair in self.Database.app_data["coinPairs"]:
                 self.buy_strategy(coin_pair)
 
